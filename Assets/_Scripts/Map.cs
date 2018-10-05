@@ -9,6 +9,12 @@ public class Map
 
 	private List<Location> locations;
 	
+	public Location GetStartLocation()
+	{
+		return startInShip;
+	}
+
+	
 	public Map() {
 		startInShip =  new Location();
 		Location outsideShip = new Location();
@@ -18,25 +24,25 @@ public class Map
 		locations.Add(outsideShip);
 		
 
-		startInShip.id = 1;
 		startInShip.name = "In Ship";
 		startInShip.exitSouth = outsideShip;
-		startInShip.firstVisit = false;
 		startInShip.pickupables = new List<PickUp>();
 		startInShip.descriptions = new string[]
 		{
-			"This is your ship, it looks damaged.", "If somehow i could find out what's wrong with this ship",
+			"This is your ship, it looks damaged.", 
+			"If somehow i could find out what's wrong with this ship",
 			"There is no way i am getting off this planet right now."
 		};
 		startInShip.shortDesc = "This is your ship.";
 			
 
-		outsideShip.id = 2;
 		outsideShip.name = "Outside Ship";
 		outsideShip.exitNorth = startInShip;
-		outsideShip.firstVisit = false;
 		outsideShip.pickupables = new List<PickUp>();
-		outsideShip.descriptions = new string[] {"You are outside your ship."};
+		outsideShip.descriptions = new string[]
+		{
+			"You are outside your ship."
+		};
 		outsideShip.shortDesc = "The land around you is barren. Maybe you should explore.";
 
 
@@ -144,10 +150,6 @@ public class Map
 		
 	}
 
-	public Location StartLocation()
-	{
-		return startInShip;
-	}
 
 
 }

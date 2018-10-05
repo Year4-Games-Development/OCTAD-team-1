@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Location
 {
+	public string name; 
+	public string shortDesc;
 
-	public int id;
 //	public List<Location> exits;
 
 	public Location exitNorth;
@@ -14,9 +15,52 @@ public class Location
 	public bool firstVisit = true;
 	public List<PickUp> pickupables;
 	// public int[] characters; 
-	public string[] descriptions; 
-	public string name; 
-	public string shortDesc; 
+	public string[] descriptions;
+
+	public string GetName()
+	{
+		return name;
+	}
+
+	public string GetDescription()
+	{
+		// first visit show first description
+		if (firstVisit)
+		{
+			return descriptions[0];
+		}
+		else
+		{
+			// choose random description
+			int randomIndex = Random.Range(0, descriptions.Length);
+			return descriptions[randomIndex];
+		}
+	}
+
+	public string GetExitDescriptions()
+	{
+		string exitList = "";
+		int exitCount = 0;
+
+		if (null != exitNorth)
+		{
+			exitList += "\n there is an exit to the North";
+			exitCount++;
+		}
+
+		if (null != exitSouth)
+		{
+			exitList += "\n there is an exit to the South";
+			exitCount++;
+		}
+
+		return "There are " + exitCount + " exits. " + exitList;
+	}
+
+	public string GetFullDescription()
+	{
+		return GetDescription() + "\n" + GetExitDescriptions();
+	}
 
 
 }

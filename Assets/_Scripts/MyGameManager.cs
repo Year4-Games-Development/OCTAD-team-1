@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,21 +8,31 @@ public class MyGameManager : MonoBehaviour
 {
     public Text textOut;
     public InputField textIn;
-    private CommandParser commandParser;    
-    
+    private CommandParser commandParser;
+
+    private Map map;
+
+    private Location currentLocation;
 
     void Awake()
     {
+        map = new Map();
         commandParser = new CommandParser();
-        textOut.text = Util.Message(Util.Type.Start);
-
-        Debug.Log("updated screen text with: " + Util.Message(Util.Type.Start));
     }
+
+    private void Start()
+    {
+        ShowMessage("Loading game map ....");
+
+        ChangeLocation(map.GetStartLocation());
+    }
+
 
     public void ProcessInput(string userText)
     {
         // add user text to output history
-        textOut.text += "\n >" + Util.ColorText(userText, "red");
+        string userTextColored =  "\n >" + Util.ColorText(userText, "red");
+        ShowMessage(userTextColored);
 
         /*
          * TODO: extend for commands with 2 or more words ...
@@ -45,20 +56,40 @@ public class MyGameManager : MonoBehaviour
             case Util.Command.Quit:
                 message = "user wants to QUIT";
                 break;
+            case Util.Command.Look:
+                message = currentLocation.GetFullDescription();
+                break;
             case Util.Command.Help:
                 message = Util.Message(Util.Type.Help);
                 break;
             case Util.Command.North:
-                message = Util.Message(Util.Type.North);
+                if (null != currentLocation.exitNorth)
+                {
+                    message = Util.Message(Util.Type.North);
+                    ChangeLocation(currentLocation.exitNorth);                    
+                }
+                else
+                {
+                    message = "Sorry - there is no exit to the North";
+                }
                 break;
             case Util.Command.South:
-                message = Util.Message(Util.Type.South);
+                if (null != currentLocation.exitSouth)
+                {
+                    message = Util.Message(Util.Type.South
+                    );
+                    ChangeLocation(currentLocation.exitSouth);                    
+                }
+                else
+                {
+                    message = "Sorry - there is no exit to the South";
+                }
                 break;
             case Util.Command.East:
-                message = Util.Message(Util.Type.East);
+                message = "Sorry - there is no exit to the East";
                 break;
             case Util.Command.West:
-                message = Util.Message(Util.Type.East);
+                message = "Sorry - there is no exit to the West";
                 break;
             case Util.Command.Unknown:
             default:
@@ -66,7 +97,27 @@ public class MyGameManager : MonoBehaviour
                 break;
         }
 
-        textOut.text += "\n" + message;
+        ShowMessage(message);
     }
+
+    private void ChangeLocation(Location newLocation)
+    {
+        currentLocation = newLocation;        
+        currentLocation.firstVisit = false;
+
+        ShowMessage(currentLocation.GetFullDescription());
+    }
+
+
+    private void ShowMessage(string message)
+    {
+        textOut.text += "\n" + message;
+        
+        // extra lines so we can see all the output
+        textOut.text += "\n\n\n";
+
+    }
+    
+    
 
 }

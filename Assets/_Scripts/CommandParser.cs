@@ -23,6 +23,8 @@ public class CommandParser
         {
             case "help":
                 return Util.Command.Help;
+            case "look":
+                return Util.Command.Look;
             case "quit":
                 return Util.Command.Quit;
             case "north":

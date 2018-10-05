@@ -19,6 +19,7 @@ public class Util
 	{
 		Quit,
 		Help,
+		Look,
 		North,
 		South,
 		East,
@@ -45,25 +46,10 @@ public class Util
 			
 			case Type.Help:
 				return "Help:" +
-				       "\n    - Quit: give up" +
-				       "\n    - Help: see this help text";
-			
-			case Type.Start:
-				return "OCTAD: Your Octad spaceship has crashed!" +
-				       "\n    - try not to die" +
-				       "\n    - hint: oxygen is a handy thing when you're on a non-Earth-like planet";
+						"\n    - Quit: give up" +
+						"\n    - Help: see this help text" +
+   						"\n    - Look: describe your current location";
 
-			case Type.North:
-				return "You Have Chosen to go north";
-
-			case Type.South:
-				return "You Have Chosen to go south";
-
-			case Type.East:
-				return "You Have Chosen to go east";
-
-			case Type.West:
-				return "You Have Chosen to go west";
 			default:
 				/*
 				 * TODO: Generate some kind of error event ??
