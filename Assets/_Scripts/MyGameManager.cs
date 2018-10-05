@@ -27,7 +27,7 @@ public class MyGameManager : MonoBehaviour
          * TODO: extend for commands with 2 or more words ...
          */
         // get command Type from text
-        CommandParser.Command command = commandParser.Parse(userText);
+        Util.Command command = commandParser.Parse(userText);
         
         // process that command
         ProcessUserCommand(command);
@@ -37,18 +37,30 @@ public class MyGameManager : MonoBehaviour
         textIn.ActivateInputField();
     }
 
-    private void ProcessUserCommand(CommandParser.Command c)
+    private void ProcessUserCommand(Util.Command c)
     {
         string message;
         switch(c)
         {
-            case CommandParser.Command.Quit:
+            case Util.Command.Quit:
                 message = "user wants to QUIT";
                 break;
-            case CommandParser.Command.Help:
+            case Util.Command.Help:
                 message = Util.Message(Util.Type.Help);
                 break;
-            case CommandParser.Command.Unknown:
+            case Util.Command.North:
+                message = Util.Message(Util.Type.North);
+                break;
+            case Util.Command.South:
+                message = Util.Message(Util.Type.South);
+                break;
+            case Util.Command.East:
+                message = Util.Message(Util.Type.East);
+                break;
+            case Util.Command.West:
+                message = Util.Message(Util.Type.East);
+                break;
+            case Util.Command.Unknown:
             default:
                 message = Util.Message(Util.Type.Unknown);
                 break;

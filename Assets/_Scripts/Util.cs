@@ -8,7 +8,32 @@ public class Util
 	{
 		Start,
 		Help,
+		Unknown,
+		North,
+		South,
+		East,
+		West
+	}
+	
+	public enum Command
+	{
+		Quit,
+		Help,
+		North,
+		South,
+		East,
+		West,
+		Pickup,
+		Drop,
+		Unknown        
+	}
+	
+	public enum Noun
+	{
+		Door,
+		Key,
 		Unknown
+        
 	}
 
 	public static string Message(Type t)
@@ -27,6 +52,18 @@ public class Util
 				return "OCTAD: Your Octad spaceship has crashed!" +
 				       "\n    - try not to die" +
 				       "\n    - hint: oxygen is a handy thing when you're on a non-Earth-like planet";
+
+			case Type.North:
+				return "You Have Chosen to go north";
+
+			case Type.South:
+				return "You Have Chosen to go south";
+
+			case Type.East:
+				return "You Have Chosen to go east";
+
+			case Type.West:
+				return "You Have Chosen to go west";
 			default:
 				/*
 				 * TODO: Generate some kind of error event ??
