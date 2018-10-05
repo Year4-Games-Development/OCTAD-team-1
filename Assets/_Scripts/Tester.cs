@@ -8,9 +8,9 @@ public class Tester : MonoBehaviour {
 	void Start ()
     {
 
-        TwoWordCommandParser parser = new TwoWordCommandParser();
+        CommandParser parser = new CommandParser();
 
-        CommandNounPair result = parser.Parse("pickup", "key");
+	    CommandAndOtherWords result = parser.Parse("pickup key");
 
         Debug.Log("result = " + result.ToString());
 		

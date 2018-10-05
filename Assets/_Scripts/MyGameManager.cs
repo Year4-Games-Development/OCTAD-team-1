@@ -27,28 +27,42 @@ public class MyGameManager : MonoBehaviour
         ChangeLocation(map.GetStartLocation());
     }
 
-
     public void ProcessInput(string userText)
     {
         // add user text to output history
         string userTextColored =  "\n >" + Util.ColorText(userText, "red");
         ShowMessage(userTextColored);
 
-        /*
-         * TODO: extend for commands with 2 or more words ...
-         */
         // get command Type from text
-        Util.Command command = commandParser.Parse(userText);
-        
-        // process that command
-        ProcessUserCommand(command);
-        
+        CommandAndOtherWords commandNounPair = commandParser.Parse(userText);
+
+        Util.Command command = commandNounPair.command;
+
+        switch (commandNounPair.numWords)
+        {
+            case 1:
+                // process that command
+                ProcessSingleWordUserCommand(command);
+                break;
+
+            case 2:
+            default:
+                // process that command
+                ProcessMultiWordUserCommand(commandNounPair);
+                break;
+        }
+
         // set input field with Focus - ready for next user input
         textIn.Select();
         textIn.ActivateInputField();
     }
 
-    private void ProcessUserCommand(Util.Command c)
+    private void ProcessMultiWordUserCommand(CommandAndOtherWords commandNounPair)
+    {
+        ShowMessage("sorry - I don't know how to process 2(or more)-word commands yet");
+    }
+
+    private void ProcessSingleWordUserCommand(Util.Command c)
     {
         string message;
         switch(c)

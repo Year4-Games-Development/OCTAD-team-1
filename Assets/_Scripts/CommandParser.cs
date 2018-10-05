@@ -1,16 +1,52 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.UIElements.GraphView;
 using UnityScript.Steps;
 
 public class CommandParser
 {
-
-
-    public Util.Command Parse(string userText)
-    {
-
+    public CommandAndOtherWords Parse(string userText) 
+    {      
         userText = userText.ToLower();
+        string[] words = userText.Split(' ');
+        string word1 = words[0];
+
+        CommandAndOtherWords commandNounPair = new CommandAndOtherWords();
+
+        commandNounPair.command = ParseCommand(word1);
+
+        
+        // was there a second word?
+        if (words.Length > 1)
+        {
+            string word2 = words[1];
+            commandNounPair.noun = ParseNoun(word2);
+            commandNounPair.numWords = words.Length;
+        }
+
+        return commandNounPair;
+
+    }
+
+
+    public Util.Noun ParseNoun(string word)
+    {
+        switch (word)
+        {
+            case "door":
+                return Util.Noun.Door;
+
+            case "key":
+                return Util.Noun.Key;
+
+        }
+        return Util.Noun.Unknown;
+    }
+
+    public Util.Command ParseCommand(string word)
+    {
+  
         
         /*
          * NORMALISATION OF TEXT
@@ -19,7 +55,7 @@ public class CommandParser
          * @TODO replace multiple spaces inside text with a SINGLE space - then can split with ' '
          */
         
-        switch (userText)
+        switch (word)
         {
             case "help":
                 return Util.Command.Help;
@@ -43,9 +79,13 @@ public class CommandParser
                 return Util.Command.West;
             case "w":
                 return Util.Command.West;
+
+            case "pickup":
+                return Util.Command.Pickup;
             
         }
         return Util.Command.Unknown;
     }
+
     
 }
