@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/_Scenes/1_userInput.unity
-  isLoaded: 1
-  isActive: 1
