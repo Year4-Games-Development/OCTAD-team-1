@@ -18,10 +18,22 @@ public class Map
 	public Map() {
 		startInShip =  new Location();
 		Location outsideShip = new Location();
+		Location cave = new Location();
+		Location forest = new Location(); 
+		Location town = new Location();
+		Location tavern = new Location();
+		Location scrapyard = new Location();
+		Location market = new Location();
 
 		locations = new List<Location>();
 		locations.Add(startInShip);
 		locations.Add(outsideShip);
+		locations.Add(cave);
+		locations.Add(forest);
+		locations.Add(town);
+		locations.Add(tavern);
+		locations.Add(scrapyard);
+		locations.Add(market);
 		
 
 		startInShip.name = "In Ship";
@@ -38,6 +50,9 @@ public class Map
 
 		outsideShip.name = "Outside Ship";
 		outsideShip.exitNorth = startInShip;
+		outsideShip.exitSouth = cave;
+		outsideShip.exitWest = forest;
+		outsideShip.exitEast = town;
 		outsideShip.pickupables = new List<PickUp>();
 		outsideShip.descriptions = new string[]
 		{
@@ -46,7 +61,66 @@ public class Map
 		outsideShip.shortDesc = "The land around you is barren. Maybe you should explore.";
 
 
-		
+		cave.name = "Cave";
+		cave.exitNorth = outsideShip;
+		cave.pickupables = new List<PickUp>();
+		cave.descriptions = new string[]
+		{
+			"You come across a dark cave. You can't see anything without a light."
+		};
+		cave.shortDesc = "";
+
+
+		forest.name = "Forest";
+		forest.exitEast = outsideShip;
+		forest.pickupables = new List<PickUp>();
+		forest.descriptions = new string[]
+		{
+			"You arrive at a seeminly endless forest. It doesnt seem save to traverse unprepared."
+		};
+		forest.shortDesc = "";
+
+		town.name = "Town";
+		town.exitWest = outsideShip;
+		town.exitNorth = market;
+		town.exitSouth = scrapyard;
+		town.exitEast = tavern;
+		town.pickupables = new List<PickUp>();
+		town.descriptions = new string[]
+		{
+			"You reach a small, but busy town."
+		};
+		town.shortDesc = "";
+
+
+		market.name = "Market";
+		market.exitSouth = town;
+		market.pickupables = new List<PickUp>();
+		market.descriptions = new string[]
+		{
+			"You arrive at a small town market. You see 4 market stalls."
+		};
+		market.shortDesc = "";
+
+
+		tavern.name = "Tavern";
+		tavern.exitWest = town;
+		tavern.pickupables = new List<PickUp>();
+		tavern.descriptions = new string[]
+		{
+			"You step inside the taven."
+		};
+		tavern.shortDesc = "";
+
+
+		scrapyard.name = "Scrapyard";
+		scrapyard.exitNorth = town;
+		scrapyard.pickupables = new List<PickUp>();
+		scrapyard.descriptions = new string[]
+		{
+			"You Walk into the scarpyard."
+		};
+		scrapyard.shortDesc = "";
 		/*
 		//In ship
 			new Location() {

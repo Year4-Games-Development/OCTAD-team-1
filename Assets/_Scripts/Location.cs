@@ -11,6 +11,10 @@ public class Location
 
 	public Location exitNorth;
 	public Location exitSouth;
+
+	public Location exitEast;
+
+	public Location exitWest;
 	
 	public bool firstVisit = true;
 	public List<PickUp> pickupables;
@@ -54,6 +58,17 @@ public class Location
 			exitCount++;
 		}
 
+		if (null != exitEast)
+		{
+			exitList += "\n there is an exit to the East";
+			exitCount++;
+		}
+
+		if (null != exitWest)
+		{
+			exitList += "\n there is an exit to the West";
+			exitCount++;
+		}
 		return "There are " + exitCount + " exits. " + exitList;
 	}
 

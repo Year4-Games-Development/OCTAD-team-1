@@ -100,10 +100,28 @@ public class MyGameManager : MonoBehaviour
                 }
                 break;
             case Util.Command.East:
+                if (null != currentLocation.exitEast)
+                {
+                    message = Util.Message(Util.Type.East
+                    );
+                    ChangeLocation(currentLocation.exitEast);                    
+                }
+                else
+                {
                 message = "Sorry - there is no exit to the East";
+                }
                 break;
             case Util.Command.West:
+                if (null != currentLocation.exitWest)
+                {
+                    message = Util.Message(Util.Type.West
+                    );
+                    ChangeLocation(currentLocation.exitWest);                    
+                }
+                else
+                {
                 message = "Sorry - there is no exit to the West";
+                }
                 break;
             case Util.Command.Unknown:
             default:
