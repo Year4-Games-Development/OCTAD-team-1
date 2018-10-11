@@ -23,7 +23,7 @@ public class UserInputter : MonoBehaviour
 
         // send text for processing by Game Manager
         myGameManager.ProcessInput(userText);
-        
+
     }
 
 }

@@ -26,6 +26,7 @@ public class Util
 		West,
 		Pickup,
 		Drop,
+		Inventory,
 		Unknown        
 	}
 	

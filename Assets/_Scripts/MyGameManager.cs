@@ -9,28 +9,30 @@ public class MyGameManager : MonoBehaviour
     public Text textOut;
     public InputField textIn;
     private CommandParser commandParser;
+    private Player player;
 
     private Map map;
 
     private Location currentLocation;
+    private Location previousLocation;
 
     void Awake()
     {
         map = new Map();
         commandParser = new CommandParser();
+        player = new Player();
     }
 
     private void Start()
     {
         ShowMessage("Loading game map ....");
-
         ChangeLocation(map.GetStartLocation());
     }
 
     public void ProcessInput(string userText)
     {
         // add user text to output history
-        string userTextColored =  "\n >" + Util.ColorText(userText, "red");
+        string userTextColored = "\n >" + Util.ColorText(userText, "red");
         ShowMessage(userTextColored);
 
         // get command Type from text
@@ -65,8 +67,11 @@ public class MyGameManager : MonoBehaviour
     private void ProcessSingleWordUserCommand(Util.Command c)
     {
         string message;
-        switch(c)
+        switch (c)
         {
+            case Util.Command.Pickup:
+                message = "You picked up ";
+                break;
             case Util.Command.Quit:
                 message = "user wants to QUIT";
                 break;
@@ -80,7 +85,7 @@ public class MyGameManager : MonoBehaviour
                 if (null != currentLocation.exitNorth)
                 {
                     message = Util.Message(Util.Type.North);
-                    ChangeLocation(currentLocation.exitNorth);                    
+                    ChangeLocation(currentLocation.exitNorth);
                 }
                 else
                 {
@@ -92,7 +97,7 @@ public class MyGameManager : MonoBehaviour
                 {
                     message = Util.Message(Util.Type.South
                     );
-                    ChangeLocation(currentLocation.exitSouth);                    
+                    ChangeLocation(currentLocation.exitSouth);
                 }
                 else
                 {
@@ -104,11 +109,11 @@ public class MyGameManager : MonoBehaviour
                 {
                     message = Util.Message(Util.Type.East
                     );
-                    ChangeLocation(currentLocation.exitEast);                    
+                    ChangeLocation(currentLocation.exitEast);
                 }
                 else
                 {
-                message = "Sorry - there is no exit to the East";
+                    message = "Sorry - there is no exit to the East";
                 }
                 break;
             case Util.Command.West:
@@ -116,12 +121,17 @@ public class MyGameManager : MonoBehaviour
                 {
                     message = Util.Message(Util.Type.West
                     );
-                    ChangeLocation(currentLocation.exitWest);                    
+                    ChangeLocation(currentLocation.exitWest);
                 }
                 else
                 {
-                message = "Sorry - there is no exit to the West";
+                    message = "Sorry - there is no exit to the West";
                 }
+                break;
+            case Util.Command.Inventory:
+
+                message = "" + player.inventory.ShowInventory();
+
                 break;
             case Util.Command.Unknown:
             default:
@@ -134,22 +144,28 @@ public class MyGameManager : MonoBehaviour
 
     private void ChangeLocation(Location newLocation)
     {
-        currentLocation = newLocation;        
-        currentLocation.firstVisit = false;
 
+        //This eliminates firstVisit being set to false while you are still "in" that location
+        previousLocation = currentLocation;
+        currentLocation = newLocation;
         ShowMessage(currentLocation.GetFullDescription());
+        if(previousLocation != null) 
+        {
+            previousLocation.firstVisit = false;
+        }
+
     }
 
 
     private void ShowMessage(string message)
     {
         textOut.text += "\n" + message;
-        
+
         // extra lines so we can see all the output
         textOut.text += "\n\n\n";
 
     }
-    
-    
+
+
 
 }

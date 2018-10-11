@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour {
+public class Item  {
 
-	private int id;
-	
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	public int id;
+	public string name;
+
+	public Item(int id, string name) {
+		this.id = id;
+		this.name = name;
 	}
 }

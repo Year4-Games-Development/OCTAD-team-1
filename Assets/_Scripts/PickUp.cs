@@ -2,6 +2,16 @@
 
 public class PickUp {
 
+
+    int id;
+    string name;
+    string description;
+
+    public PickUp() {
+        
+    }
+
+
 /*    
     enum Type
     {
@@ -11,16 +21,10 @@ public class PickUp {
     };
 */
 
-    int id;
-    string name;
-    string description;
 
 //    Type type;
 //    float exchangeValue;
 
-	public PickUp () {
-		
-	}
 
     /*
     void selectType (Type newType)
