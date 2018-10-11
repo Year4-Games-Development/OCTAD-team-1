@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Inventory
 {
 
@@ -33,23 +34,19 @@ public class Inventory
 
     public string ShowInventory()
     {
+        if(items.Count < 1)
+            return "Your inverntory is empty";
 
         string result = "";
 
-        if (items.Count > 0)
+        for (int i = 0; i < items.Count; i++)
         {
-            for (int i = 0; i < items.Count; i++)
-            {
-                result += items[i].name + " ";
-            }
+            result += items[i].name + " ";
         }
-        else
-        {
-            return "Your inverntory is empty";
-        }
-
         return result;
     }
+
+
 
 
 
