@@ -38,10 +38,10 @@ public class Map
 
 		startInShip.name = "In Ship";
 		startInShip.exitSouth = outsideShip;
-		startInShip.pickupables = new List<PickUp>();
+		startInShip.pickupables = new List<Item>();
 		startInShip.descriptions = new string[]
 		{
-			"This is your ship, it looks damaged.", 
+			"This is your ship, it looks damaged. Maybe there is something you can do to repair it. You hear a buzz and notice your computer has printed out a piece of paper before shutting off completely.", 
 			"If somehow i could find out what's wrong with this ship",
 			"There is no way i am getting off this planet right now."
 		};
@@ -52,7 +52,7 @@ public class Map
 		outsideShip.exitSouth = cave;
 		outsideShip.exitWest = forest;
 		outsideShip.exitEast = town;
-		outsideShip.pickupables = new List<PickUp>();
+		outsideShip.pickupables = new List<Item>();		
 		outsideShip.descriptions = new string[]
 		{
 			"You are outside your ship."
@@ -62,7 +62,7 @@ public class Map
 
 		cave.name = "Cave";
 		cave.exitNorth = outsideShip;
-		cave.pickupables = new List<PickUp>();
+		cave.pickupables = new List<Item>();
 		cave.descriptions = new string[]
 		{
 			"You come across a dark cave. You can't see anything without a light."
@@ -72,7 +72,7 @@ public class Map
 
 		forest.name = "Forest";
 		forest.exitEast = outsideShip;
-		forest.pickupables = new List<PickUp>();
+		forest.pickupables = new List<Item>();
 		forest.descriptions = new string[]
 		{
 			"You arrive at a seeminly endless forest. It doesnt seem save to traverse unprepared."
@@ -84,7 +84,7 @@ public class Map
 		town.exitNorth = market;
 		town.exitSouth = scrapyard;
 		town.exitEast = tavern;
-		town.pickupables = new List<PickUp>();
+		town.pickupables = new List<Item>();
 		town.descriptions = new string[]
 		{
 			"You reach a small, but busy town."
@@ -94,7 +94,7 @@ public class Map
 
 		market.name = "Market";
 		market.exitSouth = town;
-		market.pickupables = new List<PickUp>();
+		market.pickupables = new List<Item>();
 		market.descriptions = new string[]
 		{
 			"You arrive at a small town market. You see 4 market stalls."
@@ -104,7 +104,7 @@ public class Map
 
 		tavern.name = "Tavern";
 		tavern.exitWest = town;
-		tavern.pickupables = new List<PickUp>();
+		tavern.pickupables = new List<Item>();
 		tavern.descriptions = new string[]
 		{
 			"You step inside the taven."
@@ -114,7 +114,7 @@ public class Map
 
 		scrapyard.name = "Scrapyard";
 		scrapyard.exitNorth = town;
-		scrapyard.pickupables = new List<PickUp>();
+		scrapyard.pickupables = new List<Item>();
 		scrapyard.descriptions = new string[]
 		{
 			"You Walk into the scarpyard."

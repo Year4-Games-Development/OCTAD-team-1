@@ -13,6 +13,9 @@ public class Inventory
     {
         this.size = size;
         items = new List<Item>();
+        // items.Add(new Item(1,"To Do List"));
+        // items.Add(new Item(2,"Wrench"));
+
     }
 
     public void AddItem(Item item)
@@ -41,7 +44,7 @@ public class Inventory
 
         for (int i = 0; i < items.Count; i++)
         {
-            result += items[i].name + " ";
+            result += items[i].name + "\n";
         }
         return result;
     }

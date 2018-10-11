@@ -11,13 +11,15 @@ public class Location
 
 	public Location exitNorth;
 	public Location exitSouth;
-
 	public Location exitEast;
-
 	public Location exitWest;
+
+	public bool conditionMet1 = false;
+	public bool conditionMet2 = false;
+	public bool conditionMet3 = false;
 	
 	public bool firstVisit = true;
-	public List<PickUp> pickupables;
+	public List<Item> pickupables;
 	// public int[] characters; 
 	public string[] descriptions;
 
@@ -28,6 +30,7 @@ public class Location
 
 	public string GetDescription()
 	{
+		Debug.Log(firstVisit + "");
 		// first visit show first description
 		if (firstVisit)
 		{
@@ -39,6 +42,13 @@ public class Location
 			int randomIndex = Random.Range(0, descriptions.Length);
 			return descriptions[randomIndex];
 		}
+	}
+
+	public bool CheckCompleted() 
+	{
+
+
+		return true;
 	}
 
 	public string GetExitDescriptions()
