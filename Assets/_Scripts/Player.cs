@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class Player {
 
+    public Inventory inventory;
 //    float hp;
 //    float maxHp;
     float oxygenLevel;
@@ -20,7 +21,7 @@ public class Player {
 
 	public Player() {
         oxygenLevel = 1.0f;
-
+        inventory = new Inventory(10);
 //	    hp = 10;
 //	    maxHp = 10;
 //      isDead = false;

@@ -79,7 +79,8 @@ public class CommandParser
                 return Util.Command.West;
             case "w":
                 return Util.Command.West;
-
+            case "inventory": 
+                return Util.Command.Inventory;
             case "pickup":
                 return Util.Command.Pickup;
             

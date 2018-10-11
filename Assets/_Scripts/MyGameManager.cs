@@ -9,6 +9,7 @@ public class MyGameManager : MonoBehaviour
     public Text textOut;
     public InputField textIn;
     private CommandParser commandParser;
+    private Player player;
 
     private Map map;
 
@@ -18,6 +19,7 @@ public class MyGameManager : MonoBehaviour
     {
         map = new Map();
         commandParser = new CommandParser();
+        player = new Player();
     }
 
     private void Start()
@@ -122,6 +124,11 @@ public class MyGameManager : MonoBehaviour
                 {
                 message = "Sorry - there is no exit to the West";
                 }
+                break;
+            case Util.Command.Inventory:
+
+                message = "" + player.inventory.ShowInventory();
+                
                 break;
             case Util.Command.Unknown:
             default:

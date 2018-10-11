@@ -46,8 +46,7 @@ public class Map
 			"There is no way i am getting off this planet right now."
 		};
 		startInShip.shortDesc = "This is your ship.";
-			
-
+	
 		outsideShip.name = "Outside Ship";
 		outsideShip.exitNorth = startInShip;
 		outsideShip.exitSouth = cave;
