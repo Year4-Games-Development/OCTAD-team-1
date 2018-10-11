@@ -25,3 +25,18 @@ Part 2 (10 parts)
 
 https://unity3d.com/learn/tutorials/topics/scripting/introduction-and-goals?playlist=17117
 
+
+Version 1.0
+- Command Parser
+- UI
+- North/South Room portals
+
+Version 1.1
+- all room portals logic
+- all locations with brief descriptions
+
+Version 1.2
+- Inventory System implemented
+<br>!Fixes!
+- firstVisit boolean no longer changes while you are still "in" a location, only when you leave.
+
