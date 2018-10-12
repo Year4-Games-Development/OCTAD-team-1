@@ -15,10 +15,9 @@ public class MyGameManager : MonoBehaviour
 
     private Location currentLocation;
     private Location previousLocation;
-<<<<<<< HEAD
-=======
+
     private NPC currentNPC;
->>>>>>> inventory_pickup
+
 
     void Awake()
     {
@@ -86,6 +85,7 @@ public class MyGameManager : MonoBehaviour
                     
                     Item pickedup = currentLocation.pickupables[currentLocation.pickupables.Count - 1];
                     currentLocation.pickupables.RemoveAt(currentLocation.pickupables.Count - 1);
+                    Debug.Log(pickedup.name);
                     player.addItem(pickedup);
                     message = "You picked up " + pickedup.name;
                 }               
@@ -172,10 +172,8 @@ public class MyGameManager : MonoBehaviour
         {
             previousLocation.firstVisit = false;
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> inventory_pickup
+
     }
 
 

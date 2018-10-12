@@ -16,12 +16,13 @@ public class Player
     bool isDead;
      */
 
-    List<PickUp> items;
+    List<Item> items;
     //    List<int> quests;
     float amountOfMoney;
 
     public Player()
     {
+        items = new List<Item>();
         oxygenLevel = 1.0f;
         inventory = new Inventory(10);
         //	    hp = 10;
@@ -31,12 +32,13 @@ public class Player
 
 
 
-    void addItem(PickUp item)
+    public void addItem(Item item)
     {
-        items.Add(item);
+        inventory.AddItem(item);
+        //items.Add(item);
     }
 
-    void removeItem(PickUp item)
+    public void removeItem(Item item)
     {
         items.Remove(item);
     }
