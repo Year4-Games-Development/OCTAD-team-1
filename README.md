@@ -42,3 +42,8 @@ Version 1.2
 <br>!Fixes!
 - firstVisit boolean no longer changes while you are still "in" a location, only when you leave.
 
+Version 1.3
+- Pickup System fully implemented
+- Locations now hold a list of 'pickupables' 
+- Npc Datastructure added, unfinished
+
