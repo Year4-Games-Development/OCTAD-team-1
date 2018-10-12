@@ -20,11 +20,11 @@ public class Inventory
         items.Add(item);
     }
 
-    public void Drop(int id)
+    public void Drop(Item item)
     {
         for (int i = 0; i < items.Count; i++)
         {
-            if (id == items[i].id)
+            if (item.id == items[i].id)
             {
                 items.RemoveAt(i);
                 return;
@@ -44,6 +44,14 @@ public class Inventory
             result += items[i].name + " ";
         }
         return result;
+    }
+
+    public bool isInInventory(Item item)
+    {
+        for (int i = 0; i < items.Count; i++)
+            if (item.name == items[i].name)
+                return true;
+        return false;
     }
 
 
