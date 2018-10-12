@@ -7,7 +7,11 @@ public class Inventory
 {
 
     private int size;
+<<<<<<< HEAD
     private List<Item> items;
+=======
+    public List<Item> items;
+>>>>>>> inventory_pickup
 
     public Inventory(int size)
     {
@@ -23,11 +27,19 @@ public class Inventory
         items.Add(item);
     }
 
+<<<<<<< HEAD
     public void Drop(int id)
     {
         for (int i = 0; i < items.Count; i++)
         {
             if (id == items[i].id)
+=======
+    public void Drop(Item item)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (item.id == items[i].id)
+>>>>>>> inventory_pickup
             {
                 items.RemoveAt(i);
                 return;
@@ -49,6 +61,17 @@ public class Inventory
         return result;
     }
 
+<<<<<<< HEAD
+=======
+    public bool isInInventory(Item item)
+    {
+        for (int i = 0; i < items.Count; i++)
+            if (item.name == items[i].name)
+                return true;
+        return false;
+    }
+
+>>>>>>> inventory_pickup
 
 
 

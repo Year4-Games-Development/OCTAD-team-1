@@ -34,12 +34,18 @@ public class Map
 		locations.Add(tavern);
 		locations.Add(scrapyard);
 		locations.Add(market);
-		
+
+
+
+        //Item todoList
 
 		startInShip.name = "In Ship";
 		startInShip.exitSouth = outsideShip;
 		startInShip.pickupables = new List<Item>();
-		startInShip.descriptions = new string[]
+
+        startInShip.pickupables.Add(new Item(1, "todo list"));
+
+        startInShip.descriptions = new string[]
 		{
 			"This is your ship, it looks damaged. Maybe there is something you can do to repair it. You hear a buzz and notice your computer has printed out a piece of paper before shutting off completely.", 
 			"If somehow i could find out what's wrong with this ship",
