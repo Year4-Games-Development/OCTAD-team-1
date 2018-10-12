@@ -27,6 +27,8 @@ public class Util
 		Pickup,
 		Drop,
 		Inventory,
+        Attack,
+        Status,
 		Unknown        
 	}
 	

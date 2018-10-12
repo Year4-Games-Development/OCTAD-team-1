@@ -83,7 +83,12 @@ public class CommandParser
                 return Util.Command.Inventory;
             case "pickup":
                 return Util.Command.Pickup;
-            
+            case "attack":
+                return Util.Command.Attack;
+            case  "status":
+                return Util.Command.Status;
+
+
         }
         return Util.Command.Unknown;
     }

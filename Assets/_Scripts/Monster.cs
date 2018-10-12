@@ -1,53 +1,33 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 
-public class Player //: ICombat
+public class Monster : ICombat
 {
-
-    public Inventory inventory;
-    //    float hp;
-    //    float maxHp;
-    float oxygenLevel;
+    private string name;
     private int _lifePoint;
     private int _armorPoint;
     private int _attackPoint;
 
-    /*
-     * can infer from oxygen level ...
-    bool isDead;
-     */
-
-    List<PickUp> items;
-    //    List<int> quests;
-    float amountOfMoney;
-
-    public Player()
+    public Monster(string name, int life, int armor, int attack)
     {
-        oxygenLevel = 1.0f;
-        inventory = new Inventory(10);
-        setLifePoint(15);
-        setArmorPoint(5);
-        setAttackPoint(5);
-        //	    hp = 10;
-        //	    maxHp = 10;
-        //      isDead = false;
+        setArmorPoint(armor);
+        setLifePoint(life);
+        setName(name);
+        setAttackPoint(attack);
     }
 
-
-
-    void addItem(PickUp item)
+    public string getName()
     {
-        items.Add(item);
+        return this.name;
     }
 
-    void removeItem(PickUp item)
+    public void setName(string value)
     {
-        items.Remove(item);
+        this.name = value;
     }
 
-    
     public int getLifePoint()
     {
         return this._lifePoint;
@@ -78,7 +58,7 @@ public class Player //: ICombat
         this._attackPoint = value;
     }
 
-    public void receiveDommage(int amountDammage)
+    public void receiveDommage(int amountDammage) 
     {
         if (!amIDead())
         {
@@ -107,21 +87,10 @@ public class Player //: ICombat
         }
     }
 
-    public bool amIDead()
-    {
-        if (getLifePoint() > 0)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
 
     public void receiveHealth(int amountHealth)
     {
-        if (!amIDead())
+        if(!amIDead())
         {
             setLifePoint(getLifePoint() + amountHealth);
         }
@@ -131,32 +100,22 @@ public class Player //: ICombat
             // i am already dead !
         }
     }
+
+    public bool amIDead()
+    {
+        if(getLifePoint() > 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
     
     public string getFeature()
     {
         string message = getArmorPoint() + " armor point , " + getLifePoint() + " hp, " + getAttackPoint() + " dammage point ";
         return message;
     }
-
-    /*
-    void addQuest(int questId)
-    {
-        quests.Add(questId);
-    }
-
-    void removeQuest(int questId)
-    {
-        quests.Remove(questId);
-    }
-
-    void earnMoney(float money)
-    {
-        amountOfMoney += money;
-    }
-
-    void looseMoney(float money)
-    {
-        amountOfMoney -= money;
-    }
-*/
 }

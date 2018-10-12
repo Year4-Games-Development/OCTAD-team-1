@@ -10,6 +10,7 @@ public class MyGameManager : MonoBehaviour
     public InputField textIn;
     private CommandParser commandParser;
     private Player player;
+    private Monster clown;
 
     private Map map;
 
@@ -21,6 +22,7 @@ public class MyGameManager : MonoBehaviour
         map = new Map();
         commandParser = new CommandParser();
         player = new Player();
+        clown = new Monster("Clown",10,5,4);
     }
 
     private void Start()
@@ -104,6 +106,9 @@ public class MyGameManager : MonoBehaviour
                     message = "Sorry - there is no exit to the South";
                 }
                 break;
+            case Util.Command.Status:
+                message = "My Stats are : " + player.getFeature();
+                break;
             case Util.Command.East:
                 if (null != currentLocation.exitEast)
                 {
@@ -132,6 +137,37 @@ public class MyGameManager : MonoBehaviour
 
                 message = "" + player.inventory.ShowInventory();
 
+                break;
+            case Util.Command.Attack:
+                //TODO
+                //recover the monster's instance
+                if(clown.amIDead())
+                {
+                    message = clown.getName() + " is already dead !";
+                    break;
+                }
+                else
+                {
+                    clown.receiveDommage(player.getAttackPoint()); //TODO take into account the attack bonus linked to an item in the inventory 
+                    if (!clown.amIDead())
+                    {
+                        player.receiveDommage(clown.getAttackPoint());
+                        if (!player.amIDead())
+                        {
+                            message = "you still have : " + player.getFeature() + " and the " + clown.getName() + " still have : " + clown.getFeature();
+                        }
+                        else
+                        {
+                            message = "Oh God you are Dead !";
+                            //TODO 
+                            //game over management
+                        }
+                    }
+                    else
+                    {
+                        message = clown.getName() + " is dead, you win this figth !";
+                    }
+                }
                 break;
             case Util.Command.Unknown:
             default:
