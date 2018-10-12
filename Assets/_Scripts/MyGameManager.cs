@@ -82,6 +82,7 @@ public class MyGameManager : MonoBehaviour
                     
                     Item pickedup = currentLocation.pickupables[currentLocation.pickupables.Count - 1];
                     currentLocation.pickupables.RemoveAt(currentLocation.pickupables.Count - 1);
+                    player.addItem(pickedup);
                     message = "You picked up " + pickedup.name;
                 }               
                 break;
