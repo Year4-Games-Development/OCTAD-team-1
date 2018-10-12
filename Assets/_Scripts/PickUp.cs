@@ -12,7 +12,6 @@ public class PickUp {
     }
 
 
-
 /*    
     enum Type
     {

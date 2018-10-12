@@ -3,29 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class Player {
+public class Player
+{
 
     public Inventory inventory;
-//    float hp;
-//    float maxHp;
+    //    float hp;
+    //    float maxHp;
     float oxygenLevel;
-    
+
     /*
      * can infer from oxygen level ...
     bool isDead;
      */
 
     List<PickUp> items;
-//    List<int> quests;
-    float amountOfMoney;  
+    //    List<int> quests;
+    float amountOfMoney;
 
-	public Player() {
+    public Player()
+    {
         oxygenLevel = 1.0f;
         inventory = new Inventory(10);
-//	    hp = 10;
-//	    maxHp = 10;
-//      isDead = false;
-	}
+        //	    hp = 10;
+        //	    maxHp = 10;
+        //      isDead = false;
+    }
 
 
 
