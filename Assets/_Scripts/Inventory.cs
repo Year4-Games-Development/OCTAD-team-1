@@ -7,7 +7,7 @@ public class Inventory
 {
 
     private int size;
-    private List<Item> items;
+    public List<Item> items;
 
     public Inventory(int size)
     {

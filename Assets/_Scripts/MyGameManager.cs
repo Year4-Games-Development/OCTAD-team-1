@@ -15,6 +15,7 @@ public class MyGameManager : MonoBehaviour
 
     private Location currentLocation;
     private Location previousLocation;
+    private NPC currentNPC;
 
     void Awake()
     {
@@ -70,7 +71,19 @@ public class MyGameManager : MonoBehaviour
         switch (c)
         {
             case Util.Command.Pickup:
-                message = "You picked up ";
+                message = "error";
+                if (currentLocation.pickupables.Count == 0)
+                {
+                    message = "There nothing to be picked up.";
+                    break;
+                }
+                while (currentLocation.pickupables.Count != 0)
+                {
+                    
+                    Item pickedup = currentLocation.pickupables[currentLocation.pickupables.Count - 1];
+                    currentLocation.pickupables.RemoveAt(currentLocation.pickupables.Count - 1);
+                    message = "You picked up " + pickedup.name;
+                }               
                 break;
             case Util.Command.Quit:
                 message = "user wants to QUIT";
@@ -153,7 +166,6 @@ public class MyGameManager : MonoBehaviour
         {
             previousLocation.firstVisit = false;
         }
-
     }
 
 

@@ -16,10 +16,22 @@ public class NPC {
         this.id = id;
         this.name = name;
         isFirstTimeTalking = true;
+        this.inventory = new Inventory(1);
 
         //quests.Clear();
     }
-	
+
+    public void addItem(Item item)
+    {
+        this.inventory.AddItem(item);
+    }
+
+    public Item pickup(Player player)
+    {
+        player.inventory.AddItem(inventory.items[0]);
+        return inventory.items[0];
+    }
+
     public void giveItem(Player player, Item item)
     {
         if (this.inventory.isInInventory(item))

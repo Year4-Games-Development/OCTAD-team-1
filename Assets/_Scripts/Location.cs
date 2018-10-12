@@ -20,6 +20,7 @@ public class Location
 	
 	public bool firstVisit = true;
 	public List<Item> pickupables;
+    public List<NPC> npcs;
 	// public int[] characters; 
 	public string[] descriptions;
 
