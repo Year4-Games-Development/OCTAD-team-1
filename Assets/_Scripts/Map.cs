@@ -51,7 +51,7 @@ public class Map
 
         startInShip.descriptions = new string[]
 		{
-			"This is your ship, it looks damaged. Maybe there is something you can do to repair it. You hear a buzz and notice your computer has printed out a piece of paper before shutting off completely.", 
+			"This is your ship, it looks damaged. Maybe there is something you can do to repair it.\nYou hear a buzz and notice your computer has printed out a piece of paper before shutting off completely.", 
 			"If somehow i could find out what's wrong with this ship",
 			"There is no way i am getting off this planet right now."
 		};

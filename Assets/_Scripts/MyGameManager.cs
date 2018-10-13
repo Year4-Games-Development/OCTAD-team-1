@@ -34,7 +34,7 @@ public class MyGameManager : MonoBehaviour
     public void ProcessInput(string userText)
     {
         // add user text to output history
-        string userTextColored = "\n >" + Util.ColorText(userText, "red");
+        string userTextColored = "\n " + Util.ColorText("> " + userText, "#529694");
         ShowMessage(userTextColored);
 
         // get command Type from text
@@ -63,7 +63,55 @@ public class MyGameManager : MonoBehaviour
 
     private void ProcessMultiWordUserCommand(CommandAndOtherWords commandNounPair)
     {
-        ShowMessage("sorry - I don't know how to process 2(or more)-word commands yet");
+        Util.Command command = commandNounPair.command;
+        Util.Noun noun = commandNounPair.noun;
+        // Debug.Log(command.ToString());
+        // Debug.Log(noun.ToString());
+
+        string message = "";
+        switch (command)
+        {
+            case Util.Command.Use:
+                switch (noun)
+                {
+                    case Util.Noun.Todo_List:
+                        Item item = player.inventory.GetItem("todo list");
+                        if (item != null)
+                        {
+                            message = "Current tasks: " + map.ship.GetStatus();
+                        }
+                        else
+                            message = "You do not posess that item";
+                        break;
+                }
+                break;
+
+            case Util.Command.Pick:
+                switch (noun)
+                {
+                    case Util.Noun.Up:
+                        message = "error";
+                        if (currentLocation.pickupables.Count == 0)
+                        {
+                            message = "There nothing to be picked up.";
+                            break;
+                        }
+                        while (currentLocation.pickupables.Count != 0)
+                        {
+
+                            Item pickedup = currentLocation.pickupables[currentLocation.pickupables.Count - 1];
+                            currentLocation.pickupables.RemoveAt(currentLocation.pickupables.Count - 1);
+                            Debug.Log(pickedup.name);
+                            player.addItem(pickedup);
+                            message = "You picked up " + pickedup.name;
+                        }
+
+                        break;
+                }
+                break;
+        }
+
+        ShowMessage(message);
     }
 
     private void ProcessSingleWordUserCommand(Util.Command c)
@@ -71,15 +119,15 @@ public class MyGameManager : MonoBehaviour
         string message;
         switch (c)
         {
-            case Util.Command.Todo_List:
-                
-                Item item = player.inventory.GetItem("todo list");
-                if(item != null)
-                { 
-                    message = "Current tasks: " + map.ship.GetStatus();
-                } else
-                    message = "You do not posess that item";
-                break;
+            // case Util.Command.Todo_List:
+
+            //     Item item = player.inventory.GetItem("todo list");
+            //     if(item != null)
+            //     { 
+            //         message = "Current tasks: " + map.ship.GetStatus();
+            //     } else
+            //         message = "You do not posess that item";
+            //     break;
             case Util.Command.Pickup:
                 message = "error";
                 if (currentLocation.pickupables.Count == 0)
@@ -189,7 +237,7 @@ public class MyGameManager : MonoBehaviour
         textOut.text += "\n" + message;
 
         // extra lines so we can see all the output
-        textOut.text += "\n\n\n";
+        textOut.text += "\n";
 
     }
 

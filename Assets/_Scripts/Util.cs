@@ -29,7 +29,8 @@ public class Util
 		Inventory,
 		Use,
 		Read,
-		Todo_List,
+		Pick,
+		// Todo_List,
 		Unknown        
 	}
 	
@@ -38,7 +39,8 @@ public class Util
 		Door,
 		Key,
 		Unknown,
-		List
+		Up,
+		Todo_List
         
 	}
 
@@ -68,5 +70,16 @@ public class Util
 	public static string ColorText(string t, string color)
 	{
 		return "<color=" + color + ">" + t + "</color>";
+	}
+
+	public static string ColorTextImportant(string t)
+	{
+		return "<color=#A569BD>" + t + "</color>";
+	}
+
+	public static string ColorTextInteractible(string t)
+	{
+		return "<color=#D2B4DE>" + t + "</color>";
+
 	}
 }

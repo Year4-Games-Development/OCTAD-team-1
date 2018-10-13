@@ -36,13 +36,16 @@ public class Location
 		// first visit show first description
 		if (firstVisit)
 		{
-			return descriptions[0];
+			string s =  descriptions[0];
+			return Util.ColorTextImportant(" > " + s);
 		}
 		else
 		{
 			// choose random description
 			int randomIndex = Random.Range(0, descriptions.Length);
-			return descriptions[randomIndex];
+			string s = descriptions[randomIndex];
+			return Util.ColorTextImportant(" > " + s);
+
 		}
 	}
 
@@ -60,33 +63,35 @@ public class Location
 
 		if (null != exitNorth)
 		{
-			exitList += "\n there is an exit to the North";
+			exitList += "\n> there is an exit to the North";
 			exitCount++;
 		}
 
 		if (null != exitSouth)
 		{
-			exitList += "\n there is an exit to the South";
+			exitList += "\n> there is an exit to the South";
 			exitCount++;
 		}
 
 		if (null != exitEast)
 		{
-			exitList += "\n there is an exit to the East";
+			exitList += "\n> there is an exit to the East";
 			exitCount++;
 		}
 
 		if (null != exitWest)
 		{
-			exitList += "\n there is an exit to the West";
+			exitList += "\n> there is an exit to the West";
 			exitCount++;
 		}
-		return "There are " + exitCount + " exits. " + exitList;
+		
+		// string s = "There are " + exitCount + " exits. " + exitList;
+		 return Util.ColorTextInteractible(exitList);
 	}
 
 	public string GetFullDescription()
 	{
-		return GetDescription() + "\n" + GetExitDescriptions();
+		return "\n" + GetDescription() + "\n" + GetExitDescriptions();
 	}
 
 

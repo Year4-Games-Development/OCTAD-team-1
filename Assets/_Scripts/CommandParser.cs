@@ -36,11 +36,12 @@ public class CommandParser
         {
             case "door":
                 return Util.Noun.Door;
-
             case "key":
                 return Util.Noun.Key;
             case "list":
-                return Util.Noun.List;
+                return Util.Noun.Todo_List;
+            case "up":
+                return Util.Noun.Up;
 
         }
         return Util.Noun.Unknown;
@@ -88,9 +89,11 @@ public class CommandParser
             case "use":
                 return Util.Command.Use;
             case "read":
-                return Util.Command.Read;  
-            case "todo":
-                return Util.Command.Todo_List;
+                return Util.Command.Read; 
+            case "pick":
+                return Util.Command.Pick; 
+            // case "todo":
+            //     return Util.Command.Todo_List;
             
         }
         return Util.Command.Unknown;
