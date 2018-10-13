@@ -27,6 +27,9 @@ public class Util
 		Pickup,
 		Drop,
 		Inventory,
+		Use,
+		Read,
+		Todo_List,
 		Unknown        
 	}
 	
@@ -34,7 +37,8 @@ public class Util
 	{
 		Door,
 		Key,
-		Unknown
+		Unknown,
+		List
         
 	}
 

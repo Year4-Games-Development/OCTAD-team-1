@@ -10,7 +10,6 @@ public class MyGameManager : MonoBehaviour
     public InputField textIn;
     private CommandParser commandParser;
     private Player player;
-
     private Map map;
 
     private Location currentLocation;
@@ -72,8 +71,16 @@ public class MyGameManager : MonoBehaviour
         string message;
         switch (c)
         {
+            case Util.Command.Todo_List:
+                
+                Item item = player.inventory.GetItem("todo list");
+                if(item != null)
+                { 
+                    message = "Current tasks: " + map.ship.GetStatus();
+                } else
+                    message = "You do not posess that item";
+                break;
             case Util.Command.Pickup:
-
                 message = "error";
                 if (currentLocation.pickupables.Count == 0)
                 {
@@ -82,13 +89,13 @@ public class MyGameManager : MonoBehaviour
                 }
                 while (currentLocation.pickupables.Count != 0)
                 {
-                    
+
                     Item pickedup = currentLocation.pickupables[currentLocation.pickupables.Count - 1];
                     currentLocation.pickupables.RemoveAt(currentLocation.pickupables.Count - 1);
                     Debug.Log(pickedup.name);
                     player.addItem(pickedup);
                     message = "You picked up " + pickedup.name;
-                }               
+                }
 
                 break;
             case Util.Command.Quit:
@@ -168,7 +175,7 @@ public class MyGameManager : MonoBehaviour
         previousLocation = currentLocation;
         currentLocation = newLocation;
         ShowMessage(currentLocation.GetFullDescription());
-        if(previousLocation != null) 
+        if (previousLocation != null)
         {
             previousLocation.firstVisit = false;
         }

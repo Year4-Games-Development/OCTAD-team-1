@@ -8,7 +8,8 @@ public class Map
 	private Location startInShip;
 
 	private List<Location> locations;
-	
+
+	public Ship ship;
 	public Location GetStartLocation()
 	{
 		return startInShip;
@@ -16,6 +17,7 @@ public class Map
 
 	
 	public Map() {
+		ship = new Ship(3);
 		startInShip =  new Location();
 		Location outsideShip = new Location();
 		Location cave = new Location();
@@ -40,6 +42,8 @@ public class Map
         //Item todoList
 
 		startInShip.name = "In Ship";
+		// ship.SetStatus(3);
+		Debug.Log(ship.GetStatus());
 		startInShip.exitSouth = outsideShip;
 		startInShip.pickupables = new List<Item>();
 

@@ -39,6 +39,8 @@ public class CommandParser
 
             case "key":
                 return Util.Noun.Key;
+            case "list":
+                return Util.Noun.List;
 
         }
         return Util.Noun.Unknown;
@@ -83,6 +85,12 @@ public class CommandParser
                 return Util.Command.Inventory;
             case "pickup":
                 return Util.Command.Pickup;
+            case "use":
+                return Util.Command.Use;
+            case "read":
+                return Util.Command.Read;  
+            case "todo":
+                return Util.Command.Todo_List;
             
         }
         return Util.Command.Unknown;
