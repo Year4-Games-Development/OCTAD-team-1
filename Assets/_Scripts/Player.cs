@@ -7,27 +7,29 @@ public class Player
 {
 
     public Inventory inventory;
-    //    float hp;
-    //    float maxHp;
-    float oxygenLevel;
-
+    private float hp;
+    private float maxHp;
+    private float oxygenLevel;
+    private bool isDead;
+    private float maxOxygenLevel;
     /*
      * can infer from oxygen level ...
     bool isDead;
      */
 
     List<Item> items;
-    //    List<int> quests;
+    List<int> quests;
     float amountOfMoney;
 
     public Player()
     {
-        items = new List<Item>();
-        oxygenLevel = 1.0f;
-        inventory = new Inventory(10);
-        //	    hp = 10;
-        //	    maxHp = 10;
-        //      isDead = false;
+        this.items = new List<Item>();
+        this.oxygenLevel = 1.0f;
+        this.inventory = new Inventory(10);
+        this.hp = 1.0f;
+        this.maxHp = 1.0f;
+        this.isDead = false;
+        this.maxOxygenLevel = 5.0f;
     }
 
 
@@ -43,6 +45,30 @@ public class Player
         items.Remove(item);
     }
 
+    public void OxygenTickDown(float amount)
+    {
+        this.oxygenLevel -= amount;
+    }
+
+    public float GetOxygenLevel()
+    {
+        return this.oxygenLevel * 100;
+    }
+
+    public float GetHp()
+    {
+        return this.hp * 100;
+    }
+
+    public string GetStatus()
+    {
+        return "Oxygen: " + Math.Floor(this.GetOxygenLevel()).ToString() + "%" +  "\n" + "HP: " + Math.Floor(GetHp()).ToString() + "%"; 
+    }
+
+    public void ReplenishOxygen()
+    {
+        this.oxygenLevel = 1.0f;
+    }
     /*
          void takeDamages(float dmg)
     {

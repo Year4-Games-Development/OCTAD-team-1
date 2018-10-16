@@ -6,6 +6,7 @@ public class PickUp {
     int id;
     string name;
     string description;
+    
 
     public PickUp() {
         

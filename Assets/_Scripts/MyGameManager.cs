@@ -29,10 +29,13 @@ public class MyGameManager : MonoBehaviour
     {
         ShowMessage("Loading game map ....");
         ChangeLocation(map.GetStartLocation());
+        ShowMessage("" + player.GetStatus());
     }
 
     public void ProcessInput(string userText)
     {
+        ShowMessage("------------------------------------------------------------");
+
         // add user text to output history
         string userTextColored = "\n " + Util.ColorText("> " + userText, "#529694");
         ShowMessage(userTextColored);
@@ -119,6 +122,12 @@ public class MyGameManager : MonoBehaviour
         string message;
         switch (c)
         {
+
+            case Util.Command.Status:
+
+                message = player.GetStatus();
+                break;
+
             // case Util.Command.Todo_List:
 
             //     Item item = player.inventory.GetItem("todo list");
@@ -222,12 +231,18 @@ public class MyGameManager : MonoBehaviour
         //This eliminates firstVisit being set to false while you are still "in" that location
         previousLocation = currentLocation;
         currentLocation = newLocation;
-        ShowMessage(currentLocation.GetFullDescription());
         if (previousLocation != null)
         {
             previousLocation.firstVisit = false;
-        }
+            player.OxygenTickDown(0.02f);
 
+        }
+        if (currentLocation.name == "In Ship" && previousLocation != null)
+        {
+            player.ReplenishOxygen();
+            ShowMessage(Util.ColorTextPositive("Oxygen Replenished"));
+        }
+        ShowMessage(currentLocation.GetFullDescription());
 
     }
 

@@ -37,14 +37,14 @@ public class Location
 		if (firstVisit)
 		{
 			string s =  descriptions[0];
-			return Util.ColorTextImportant(" > " + s);
+			return Util.ColorTextImportant("> " + s);
 		}
 		else
 		{
 			// choose random description
 			int randomIndex = Random.Range(0, descriptions.Length);
 			string s = descriptions[randomIndex];
-			return Util.ColorTextImportant(" > " + s);
+			return Util.ColorTextImportant("> " + s);
 
 		}
 	}

@@ -64,6 +64,8 @@ public class CommandParser
                 return Util.Command.Help;
             case "look":
                 return Util.Command.Look;
+            case "status":
+                return Util.Command.Status;
             case "quit":
                 return Util.Command.Quit;
             case "north":

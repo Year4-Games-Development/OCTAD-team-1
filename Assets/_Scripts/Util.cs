@@ -31,6 +31,7 @@ public class Util
 		Read,
 		Pick,
 		// Todo_List,
+		Status,
 		Unknown        
 	}
 	
@@ -81,5 +82,10 @@ public class Util
 	{
 		return "<color=#D2B4DE>" + t + "</color>";
 
+	}
+
+	public static string ColorTextPositive(string t)
+	{
+		return "<color=Green>" + t + "</color>";
 	}
 }
