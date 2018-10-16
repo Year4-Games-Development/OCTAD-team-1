@@ -41,3 +41,13 @@ Inventory System
 1.1  
 - add quest to player list of quests
 
+**Player** 
+1.0
+- Health / oxygen status
+
+**Oxygen** 
+1.0
+- ticks down every location change
+- replenish when return to ship 
+
+
