@@ -1,22 +1,31 @@
 ﻿
+using System.Collections.Generic;
+
 public class NPC {
 
     private int id;
-    private string name;
+    public string name;
 
     private bool isFirstTimeTalking;
 
     private Inventory inventory;
 
+    public string intro;
+    private List<string> questions;
+    private List<string> answers;
+
     //private List<Quest> quests;
 
     
-    public NPC(int id, string name)
+    public NPC(int id, string name, string intro)
     {
         this.id = id;
         this.name = name;
         isFirstTimeTalking = true;
         this.inventory = new Inventory(1);
+        this.intro = intro;
+        questions = new List<string>();
+        answers = new List<string>();
 
         //quests.Clear();
     }
@@ -49,4 +58,27 @@ public class NPC {
             player.inventory.Drop(item);
         }
     }
+
+    public void addDialog(string question, string answer)
+    {
+        questions.Add(question);
+        answers.Add(answer);
+    }
+
+    public string dialog(string playerQuestion)
+    {
+        if(questions.Count == 0)
+        {
+            return "I have nothing to say !";
+        }
+
+        for(int i = 0; i < questions.Count; i++)
+        {
+            if (questions[i].Equals(playerQuestion))
+                return answers[i];
+        }
+
+        return "Sorry, I don't understand what you said.";
+    }
+
 }

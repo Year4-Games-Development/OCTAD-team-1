@@ -111,7 +111,7 @@ public class MyGameManager : MonoBehaviour
 
                         break;
                 }
-                break;
+                break;            
         }
 
         ShowMessage(message);
@@ -215,6 +215,15 @@ public class MyGameManager : MonoBehaviour
 
                 message = "" + player.inventory.ShowInventory();
 
+                break;
+            case Util.Command.Talk:
+                if (currentLocation.npcs.Count == 0)
+                {
+                    message = "There is nobody...";
+                    break;
+                }
+                message = "You decide to talk to " + currentLocation.npcs[0].name
+                            + "\r\n" + currentLocation.npcs[0].intro;
                 break;
             case Util.Command.Unknown:
             default:

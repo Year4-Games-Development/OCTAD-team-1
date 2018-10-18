@@ -25,6 +25,11 @@ public class Location
 	// public int[] characters; 
 	public string[] descriptions;
 
+    public Location()
+    {
+        npcs = new List<NPC>();
+    }
+
 	public string GetName()
 	{
 		return name;

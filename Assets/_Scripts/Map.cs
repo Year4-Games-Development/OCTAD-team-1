@@ -95,11 +95,13 @@ public class Map
 		town.exitSouth = scrapyard;
 		town.exitEast = tavern;
 		town.pickupables = new List<Item>();
-		town.descriptions = new string[]
+        town.descriptions = new string[]
 		{
 			"You reach a small, but busy town."
 		};
-		town.shortDesc = "";
+        town.npcs.Add(new NPC(1, "Steven the Stranger", "Hi ! I'm Steven the Stranger ! Nice to meet you !"));
+        town.npcs[0].addDialog("hello", "Hello !");
+        town.shortDesc = "";
 
 
 		market.name = "Market";
