@@ -10,7 +10,7 @@ public class Player
     private float hp;
     private float maxHp;
     private float oxygenLevel;
-    private bool isDead;
+    public bool isDead;
     private float maxOxygenLevel;
     /*
      * can infer from oxygen level ...
@@ -47,7 +47,13 @@ public class Player
 
     public void OxygenTickDown(float amount)
     {
-        this.oxygenLevel -= amount;
+      if(this.oxygenLevel >= 1)
+      {
+          this.oxygenLevel -= amount;
+      } else 
+      {
+          this.isDead = true;
+      }
     }
 
     public float GetOxygenLevel()
@@ -69,14 +75,16 @@ public class Player
     {
         this.oxygenLevel = 1.0f;
     }
-    /*
-         void takeDamages(float dmg)
+
+    
+    
+    void takeDamage(float dmg)
     {
         hp -= dmg;
         if (hp <= 0)
             isDead = true;
     }
-
+/*
     void recoverHp(float heal)
     {
         hp += heal;

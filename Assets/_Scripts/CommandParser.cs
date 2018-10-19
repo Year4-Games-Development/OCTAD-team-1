@@ -94,6 +94,8 @@ public class CommandParser
                 return Util.Command.Read; 
             case "pick":
                 return Util.Command.Pick; 
+            case "retry":
+                return Util.Command.Retry;
             // case "todo":
             //     return Util.Command.Todo_List;
             

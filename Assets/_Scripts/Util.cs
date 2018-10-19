@@ -32,6 +32,7 @@ public class Util
 		Pick,
 		// Todo_List,
 		Status,
+		Retry,
 		Unknown        
 	}
 	

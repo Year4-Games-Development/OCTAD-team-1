@@ -216,6 +216,11 @@ public class MyGameManager : MonoBehaviour
                 message = "" + player.inventory.ShowInventory();
 
                 break;
+
+            case Util.Command.Retry:
+                message = "New Game started";
+                Application.LoadLevel(Application.loadedLevel);
+                break;
             case Util.Command.Unknown:
             default:
                 message = Util.Message(Util.Type.Unknown);
@@ -234,16 +239,21 @@ public class MyGameManager : MonoBehaviour
         if (previousLocation != null)
         {
             previousLocation.firstVisit = false;
-            player.OxygenTickDown(0.02f);
-
+            player.OxygenTickDown(0.5f);
+            if(player.isDead)
+            {
+                ShowMessage("GAME OVER. You are dead" + "\n type 'retry' to start again");             
+            }
         }
-        if (currentLocation.name == "In Ship" && previousLocation != null)
+        if(!player.isDead)
         {
-            player.ReplenishOxygen();
-            ShowMessage(Util.ColorTextPositive("Oxygen Replenished"));
+            if (currentLocation.name == "In Ship" && previousLocation != null)
+            {
+                player.ReplenishOxygen();
+                ShowMessage(Util.ColorTextPositive("Oxygen Replenished"));
+            }
+            ShowMessage(currentLocation.GetFullDescription());
         }
-        ShowMessage(currentLocation.GetFullDescription());
-
     }
 
 
