@@ -262,10 +262,11 @@ public class MyGameManager : MonoBehaviour
         if (previousLocation != null)
         {
             previousLocation.firstVisit = false;
-            player.OxygenTickDown(0.5f);
+            player.OxygenTickDown(0.05f);
             if(player.isDead)
             {
-                ShowMessage("GAME OVER. You are dead" + "\n type 'retry' to start again");             
+                ShowMessage("GAME OVER. You are dead" + "\n type 'retry' to start again");     
+                Debug.Log("" + player.GetOxygenLevel());        
             }
         }
         if(!player.isDead)

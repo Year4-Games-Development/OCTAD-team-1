@@ -47,7 +47,7 @@ public class Player
 
     public void OxygenTickDown(float amount)
     {
-      if(this.oxygenLevel >= 1)
+      if(this.oxygenLevel >= 0.1f)
       {
           this.oxygenLevel -= amount;
       } else 
