@@ -65,8 +65,8 @@ public class CommandParser
                 return Util.Command.Help;
             case "look":
                 return Util.Command.Look;
-            case "status":
-                return Util.Command.Status;
+            // case "status":
+            //     return Util.Command.Status;
             case "quit":
                 return Util.Command.Quit;
             case "north":
@@ -105,6 +105,13 @@ public class CommandParser
                 return Util.Command.Talk;
                 // case "todo":
                 //     return Util.Command.Todo_List;
+            case "attack":
+                return Util.Command.Attack;
+            case  "status":
+                return Util.Command.Status;
+            case "watch":
+                return Util.Command.Watch;
+
 
         }
         return Util.Command.Unknown;

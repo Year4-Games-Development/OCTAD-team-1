@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class Player
+public class Player //: ICombat
 {
 
     public Inventory inventory;
@@ -12,6 +12,13 @@ public class Player
     private float oxygenLevel;
     public bool isDead;
     private float maxOxygenLevel;
+    //    float hp;
+    //    float maxHp;
+    // float oxygenLevel;
+    private int _lifePoint;
+    private int _armorPoint;
+    private int _attackPoint;
+
     /*
      * can infer from oxygen level ...
     bool isDead;
@@ -30,6 +37,14 @@ public class Player
         this.maxHp = 1.0f;
         this.isDead = false;
         this.maxOxygenLevel = 5.0f;
+        oxygenLevel = 1.0f;
+        inventory = new Inventory(10);
+        setLifePoint(15);
+        setArmorPoint(5);
+        setAttackPoint(5);
+        //	    hp = 10;
+        //	    maxHp = 10;
+        //      isDead = false;
     }
 
 
@@ -78,20 +93,102 @@ public class Player
 
     
     
-    void takeDamage(float dmg)
+    // void takeDamage(float dmg)
+
+    
+    public int getLifePoint()
     {
-        hp -= dmg;
-        if (hp <= 0)
-            isDead = true;
+        return this._lifePoint;
     }
-/*
-    void recoverHp(float heal)
+
+    public void setLifePoint(int value)
     {
-        hp += heal;
-        if (hp > maxHp)
-            hp = maxHp;
+        this._lifePoint = value;
+    }
+
+    public int getArmorPoint()
+    {
+        return this._armorPoint;
+    }
+
+    public void setArmorPoint(int value)
+    {
+        this._armorPoint = value;
+    }
+
+    public int getAttackPoint()
+    {
+        return this._attackPoint;
+    }
+
+    // void recoverHp(float heal)
+
+    public void setAttackPoint(int value)
+    {
+        this._attackPoint = value;
+    }
+
+    public void receiveDommage(int amountDammage)
+    {
+        if (!amIDead())
+        {
+            if (getArmorPoint() > 0)
+            {
+                if (getArmorPoint() - amountDammage >= 0)
+                {
+                    setArmorPoint(getArmorPoint() - amountDammage);
+                }
+                else if (getArmorPoint() - amountDammage < 0)
+                {
+                    int lifePointLost = amountDammage - getArmorPoint();
+                    setArmorPoint(0);
+                    setLifePoint(getLifePoint() - lifePointLost);
+                }
+            }
+            else
+            {
+                setLifePoint(getLifePoint() - amountDammage);
+            }
+        }
+        else
+        {
+            //TODO
+            //the monster is already dead
+        }
+    }
+
+    public bool amIDead()
+    {
+        if (getLifePoint() > 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public void receiveHealth(int amountHealth)
+    {
+        if (!amIDead())
+        {
+            setLifePoint(getLifePoint() + amountHealth);
+        }
+        else
+        {
+            //TODO
+            // i am already dead !
+        }
     }
     
+    public string getFeature()
+    {
+        string message = getArmorPoint() + " armor point , " + getLifePoint() + " hp, " + getAttackPoint() + " dammage point ";
+        return message;
+    }
+
+    /*
     void addQuest(int questId)
     {
         quests.Add(questId);

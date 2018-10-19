@@ -127,10 +127,10 @@ public class MyGameManager : MonoBehaviour
         switch (c)
         {
 
-            case Util.Command.Status:
+            // case Util.Command.Status:
 
-                message = player.GetStatus();
-                break;
+            //     message = player.GetStatus();
+            //     break;
 
             // case Util.Command.Todo_List:
 
@@ -164,6 +164,23 @@ public class MyGameManager : MonoBehaviour
                 break;
             case Util.Command.Look:
                 message = currentLocation.GetFullDescription();
+
+                if(currentLocation.GetName().Equals("In Ship"))
+                    {
+                        message += "\r\n There is no monster inside your ship ";
+                    }
+                    else
+                    {
+                        if (!currentLocation.monster.amIDead())
+                        {
+                            message += "\r\nYou face " + currentLocation.monster.getName() + " and he has : " + currentLocation.monster.getFeature();
+                        }
+                        else
+                        {
+                            message += "\r\n"+ currentLocation.monster.getName() + " is dead !";
+                        }
+                    }
+               
                 break;
             case Util.Command.Help:
                 message = Util.Message(Util.Type.Help);
@@ -190,6 +207,9 @@ public class MyGameManager : MonoBehaviour
                 {
                     message = "Sorry - there is no exit to the South";
                 }
+                break;
+            case Util.Command.Status:
+                message = player.GetStatus() + "\nMy Stats are : " + player.getFeature();
                 break;
             case Util.Command.East:
                 if (null != currentLocation.exitEast)
@@ -236,6 +256,52 @@ public class MyGameManager : MonoBehaviour
                     message = "You talk to " + currentNPC.name + "\r\n" + currentNPC.intro;
                 }
                 break;
+            case Util.Command.Attack:
+                if (currentLocation.monster.amIDead())
+                {
+                    message = currentLocation.monster.getName() + " is already dead !";
+                    break;
+                }
+                else
+                {
+                    currentLocation.monster.receiveDommage(player.getAttackPoint()); //TODO take into account the attack bonus linked to an item in the inventory 
+                    if (!currentLocation.monster.amIDead())
+                    {
+                        player.receiveDommage(currentLocation.monster.getAttackPoint());
+                        if (!player.amIDead())
+                        {
+                            message = "You still have : " + player.getFeature() + " and the " + currentLocation.monster.getName() + " still have : " + currentLocation.monster.getFeature();
+                        }
+                        else
+                        {
+                            message = "Oh God you are Dead !";
+                            //TODO 
+                            //game over management
+                        }
+                    }
+                    else
+                    {
+                        message = currentLocation.monster.getName() + " is dead, you win this figth !";
+                    }
+                }
+                break;
+            // case Util.Command.Watch:
+            //     if(currentLocation.GetName().Equals("In Ship"))
+            //     {
+            //         message = " There is no monster inside your ship ";
+            //     }
+            //     else
+            //     {
+            //         if (!currentLocation.monster.amIDead())
+            //         {
+            //             message = " You face " + currentLocation.monster.getName() + " and he has : " + currentLocation.monster.getFeature();
+            //         }
+            //         else
+            //         {
+            //             message = currentLocation.monster.getName() + " is dead !";
+            //         }
+            //     }
+            //     break;
             case Util.Command.Unknown:
             default:
                 if (currentLocation.npcs.Count > 0)                

@@ -31,9 +31,12 @@ public class Util
 		Read,
 		Pick,
 		// Todo_List,
-		Status,
+		// Status,
 		Retry,
         Talk,
+        Attack,
+        Status,
+        Watch, //display the characteristics of the monster 
 		Unknown        
 	}
 	

@@ -6,6 +6,7 @@ public class Location
 {
 	public string name; 
 	public string shortDesc;
+    public Monster monster;
 
 //	public List<Location> exits;
 
@@ -29,6 +30,7 @@ public class Location
     {
         pickupables = new List<Item>();
         npcs = new List<NPC>();
+		
     }
 
 	public string GetName()
