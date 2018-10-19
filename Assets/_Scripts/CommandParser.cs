@@ -93,7 +93,9 @@ public class CommandParser
             case "read":
                 return Util.Command.Read; 
             case "pick":
-                return Util.Command.Pick; 
+                return Util.Command.Pick;
+            case "talk":
+                return Util.Command.Talk;
             // case "todo":
             //     return Util.Command.Todo_List;
             

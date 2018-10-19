@@ -49,7 +49,7 @@ public class MyGameManager : MonoBehaviour
         {
             case 1:
                 // process that command
-                ProcessSingleWordUserCommand(command);
+                ProcessSingleWordUserCommand(command, userText);
                 break;
 
             case 2:
@@ -112,12 +112,16 @@ public class MyGameManager : MonoBehaviour
                         break;
                 }
                 break;
+            case Util.Command.Unknown:
+            default:
+                message = Util.Message(Util.Type.Unknown);
+                break;
         }
 
         ShowMessage(message);
     }
 
-    private void ProcessSingleWordUserCommand(Util.Command c)
+    private void ProcessSingleWordUserCommand(Util.Command c, string userText)
     {
         string message;
         switch (c)
@@ -216,8 +220,24 @@ public class MyGameManager : MonoBehaviour
                 message = "" + player.inventory.ShowInventory();
 
                 break;
+            case Util.Command.Talk:
+                if (currentLocation.npcs.Count <= 0)
+                    message = "There is nobody...";
+                else {
+                    NPC currentNPC = currentLocation.npcs[0];
+                    message = "You talk to " + currentNPC.name + "\r\n" + currentNPC.intro;
+                }
+                break;
             case Util.Command.Unknown:
             default:
+                if (currentLocation.npcs.Count > 0)                
+                {
+                    NPC currentNPC = currentLocation.npcs[0];
+                    message = currentNPC.dialog(userText);
+                    if(!message.Equals(""))
+                        break;
+                }
+
                 message = Util.Message(Util.Type.Unknown);
                 break;
         }
