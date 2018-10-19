@@ -33,6 +33,7 @@ public class Util
 		// Todo_List,
 		Status,
 		Retry,
+        Talk,
 		Unknown        
 	}
 	

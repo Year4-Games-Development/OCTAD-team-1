@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEditor.Experimental.UIElements.GraphView;
 using UnityScript.Steps;
 
@@ -99,6 +100,12 @@ public class CommandParser
             // case "todo":
             //     return Util.Command.Todo_List;
             
+                return Util.Command.Pick;
+            case "talk":
+                return Util.Command.Talk;
+                // case "todo":
+                //     return Util.Command.Todo_List;
+
         }
         return Util.Command.Unknown;
     }
