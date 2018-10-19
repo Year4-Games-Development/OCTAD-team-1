@@ -99,9 +99,9 @@ public class Map
 		{
 			"You reach a small, but busy town."
 		};
-        town.npcs.Add(new NPC(1, "Steven the Stranger", "Hi ! I'm Steven the Stranger ! Nice to meet you !"));
-        town.npcs[0].addDialog("hello", "Hello !");
         town.shortDesc = "";
+        town.npcs.Add(new NPC(1, "Bob"));
+        town.npcs[0].addDialog("info", "This town is a good place if you want to find some scraps.");
 
 
 		market.name = "Market";

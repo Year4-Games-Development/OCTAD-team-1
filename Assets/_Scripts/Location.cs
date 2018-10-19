@@ -27,6 +27,7 @@ public class Location
 
     public Location()
     {
+        pickupables = new List<Item>();
         npcs = new List<NPC>();
     }
 
@@ -42,6 +43,12 @@ public class Location
 		if (firstVisit)
 		{
 			string s =  descriptions[0];
+            if (npcs.Count > 0) {
+                s += "\r\n There is :";
+                for (int i = 0; i < npcs.Count; i++)
+                    s += "\r\n\t " + npcs[i].name;
+            }
+            
 			return Util.ColorTextImportant("> " + s);
 		}
 		else
