@@ -58,9 +58,9 @@ public class Map
 			"You are outside your ship."
 		};
 		outsideShip.shortDesc = "The land around you is barren. Maybe you should explore.";
+        outsideShip.monster = new Monster("Evil Guard", 10, 0, 2);
 
-
-		cave.name = "Cave";
+        cave.name = "Cave";
 		cave.exitNorth = outsideShip;
 		cave.pickupables = new List<Item>();
 		cave.descriptions = new string[]
@@ -68,9 +68,10 @@ public class Map
 			"You come across a dark cave. You can't see anything without a light."
 		};
 		cave.shortDesc = "";
+        cave.monster = new Monster("Cave troll", 13, 1, 3);
 
 
-		forest.name = "Forest";
+        forest.name = "Forest";
 		forest.exitEast = outsideShip;
 		forest.pickupables = new List<Item>();
 		forest.descriptions = new string[]
@@ -78,8 +79,9 @@ public class Map
 			"You arrive at a seeminly endless forest. It doesnt seem save to traverse unprepared."
 		};
 		forest.shortDesc = "";
+        forest.monster = new Monster("Enchanted tree", 7, 0, 1);
 
-		town.name = "Town";
+        town.name = "Town";
 		town.exitWest = outsideShip;
 		town.exitNorth = market;
 		town.exitSouth = scrapyard;
@@ -90,9 +92,10 @@ public class Map
 			"You reach a small, but busy town."
 		};
 		town.shortDesc = "";
+        town.monster = new Monster("Evil Citizen", 10, 0, 3);
 
 
-		market.name = "Market";
+        market.name = "Market";
 		market.exitSouth = town;
 		market.pickupables = new List<Item>();
 		market.descriptions = new string[]
@@ -100,9 +103,10 @@ public class Map
 			"You arrive at a small town market. You see 4 market stalls."
 		};
 		market.shortDesc = "";
+        market.monster = new Monster("Mad Seller", 15, 0, 1);
 
 
-		tavern.name = "Tavern";
+        tavern.name = "Tavern";
 		tavern.exitWest = town;
 		tavern.pickupables = new List<Item>();
 		tavern.descriptions = new string[]
@@ -110,9 +114,10 @@ public class Map
 			"You step inside the taven."
 		};
 		tavern.shortDesc = "";
+        tavern.monster = new Monster("Cyclope", 10, 0, 6);
 
 
-		scrapyard.name = "Scrapyard";
+        scrapyard.name = "Scrapyard";
 		scrapyard.exitNorth = town;
 		scrapyard.pickupables = new List<Item>();
 		scrapyard.descriptions = new string[]
@@ -120,7 +125,8 @@ public class Map
 			"You Walk into the scarpyard."
 		};
 		scrapyard.shortDesc = "";
-		/*
+        scrapyard.monster = new Monster("scrap dealer", 12, 0, 4);
+        /*
 		//In ship
 			new Location() {
 				id = 1,
@@ -219,9 +225,9 @@ public class Map
 		};
 		
 		*/
-		
-		
-	}
+
+
+    }
 
 
 

@@ -10,7 +10,6 @@ public class MyGameManager : MonoBehaviour
     public InputField textIn;
     private CommandParser commandParser;
     private Player player;
-    private Monster clown;
 
     private Map map;
 
@@ -22,7 +21,6 @@ public class MyGameManager : MonoBehaviour
         map = new Map();
         commandParser = new CommandParser();
         player = new Player();
-        clown = new Monster("Clown",10,5,4);
     }
 
     private void Start()
@@ -139,22 +137,20 @@ public class MyGameManager : MonoBehaviour
 
                 break;
             case Util.Command.Attack:
-                //TODO
-                //recover the monster's instance
-                if(clown.amIDead())
+                if (currentLocation.monster.amIDead())
                 {
-                    message = clown.getName() + " is already dead !";
+                    message = currentLocation.monster.getName() + " is already dead !";
                     break;
                 }
                 else
                 {
-                    clown.receiveDommage(player.getAttackPoint()); //TODO take into account the attack bonus linked to an item in the inventory 
-                    if (!clown.amIDead())
+                    currentLocation.monster.receiveDommage(player.getAttackPoint()); //TODO take into account the attack bonus linked to an item in the inventory 
+                    if (!currentLocation.monster.amIDead())
                     {
-                        player.receiveDommage(clown.getAttackPoint());
+                        player.receiveDommage(currentLocation.monster.getAttackPoint());
                         if (!player.amIDead())
                         {
-                            message = "you still have : " + player.getFeature() + " and the " + clown.getName() + " still have : " + clown.getFeature();
+                            message = "You still have : " + player.getFeature() + " and the " + currentLocation.monster.getName() + " still have : " + currentLocation.monster.getFeature();
                         }
                         else
                         {
@@ -165,7 +161,24 @@ public class MyGameManager : MonoBehaviour
                     }
                     else
                     {
-                        message = clown.getName() + " is dead, you win this figth !";
+                        message = currentLocation.monster.getName() + " is dead, you win this figth !";
+                    }
+                }
+                break;
+            case Util.Command.Watch:
+                if(currentLocation.GetName().Equals("In Ship"))
+                {
+                    message = " There is no monster inside your ship ";
+                }
+                else
+                {
+                    if (!currentLocation.monster.amIDead())
+                    {
+                        message = " You face " + currentLocation.monster.getName() + " and he has : " + currentLocation.monster.getFeature();
+                    }
+                    else
+                    {
+                        message = currentLocation.monster.getName() + " is dead !";
                     }
                 }
                 break;

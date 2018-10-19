@@ -6,6 +6,7 @@ public class Location
 {
 	public string name; 
 	public string shortDesc;
+    public Monster monster;
 
 //	public List<Location> exits;
 

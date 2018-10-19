@@ -87,6 +87,8 @@ public class CommandParser
                 return Util.Command.Attack;
             case  "status":
                 return Util.Command.Status;
+            case "watch":
+                return Util.Command.Watch;
 
 
         }

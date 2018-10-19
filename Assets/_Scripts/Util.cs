@@ -29,6 +29,7 @@ public class Util
 		Inventory,
         Attack,
         Status,
+        Watch, //display the characteristics of the monster 
 		Unknown        
 	}
 	
