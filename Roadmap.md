@@ -49,5 +49,6 @@ Inventory System
 1.0
 - ticks down every location change
 - replenish when return to ship 
+- player die when oxygen equals zero
 
 
