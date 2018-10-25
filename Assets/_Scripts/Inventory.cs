@@ -23,7 +23,7 @@ public class Inventory
     {
         for (int i = 0; i < items.Count; i++)
         {
-            if (name == items[i].name)
+            if (name == items[i].Name)
 
             {
                 return items[i];
@@ -61,7 +61,7 @@ public class Inventory
 
         for (int i = 0; i < items.Count; i++)
         {
-            result += items[i].name + "\n";
+            result += items[i].Name + "\n";
         }
         return result;
     }
@@ -70,7 +70,7 @@ public class Inventory
     public bool isInInventory(Item item)
     {
         for (int i = 0; i < items.Count; i++)
-            if (item.name == items[i].name)
+            if (item.Name == items[i].Name)
                 return true;
         return false;
     }

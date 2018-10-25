@@ -37,6 +37,7 @@ public class Util
         Attack,
         Status,
         Watch, //display the characteristics of the monster 
+        Quests,
 		Unknown        
 	}
 	

@@ -111,6 +111,8 @@ public class CommandParser
                 return Util.Command.Status;
             case "watch":
                 return Util.Command.Watch;
+            case "quests":
+                return Util.Command.Quests;
 
 
         }

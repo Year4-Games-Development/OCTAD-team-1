@@ -10,11 +10,11 @@ public class NPC {
 
     private Inventory inventory;
 
-    public string intro;
+    private string _fullIntro;
+    public string Intro { get; set; }
     private List<string> questions;
     private List<string> answers;
-
-    //private List<Quest> quests;
+    private List<Quest> quests;
 
 
     
@@ -24,19 +24,25 @@ public class NPC {
         this.name = name;
         isFirstTimeTalking = true;
         this.inventory = new Inventory(1);
-        intro = name + " : Hello, I'm " + name;
-
+        
         questions = new List<string>();
         answers = new List<string>();
+        quests = new List<Quest>();
 
-        //quests.Clear();
+        UpdateIntro();
+
     }
 
-    public void changeIntro(string newIntro)
+    public void UpdateIntro()
     {
-        if (newIntro.Contains("<name>"))
-            newIntro.Replace("<name>", name);
-        intro = name + " : "+newIntro;
+        _fullIntro = name + " : "+Intro;
+        for (int i = 0; i < questions.Count; i++)
+            _fullIntro += "\r\n(" + questions[i] + ")";
+    }
+
+    public string GetFullIntro()
+    {
+        return _fullIntro;
     }
 
     public void addItem(Item item)
@@ -68,16 +74,31 @@ public class NPC {
         }
     }
 
-    public void addDialog(string question, string answer)
+    public void addDialog(string question, string answer, Quest quest = null)
     {
         questions.Add(question);
         answers.Add(answer);
+        quests.Add(quest);
+
+        UpdateIntro();
+
     }
-    public string dialog(string question)
+    public string dialog(string question, Player player)
     {
         for (int i = 0; i < questions.Count; i++)
             if (questions[i].Equals(question))
-                return name+" : "+answers[i];
+            {
+                string answer = answers[i];
+                if (quests[i] != null)
+                {
+                    player.quests.Add(quests[i]);
+                    questions.RemoveAt(i);
+                    answers.RemoveAt(i);
+                    quests.RemoveAt(i);
+                }
+                UpdateIntro();
+                return name + " : " + answer;
+            }
         return "";
     }
 }

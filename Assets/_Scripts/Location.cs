@@ -22,14 +22,15 @@ public class Location
 	public bool firstVisit = true;
 	public List<Item> pickupables;
 
-    public List<NPC> npcs;
+    public NPC npc;
 	// public int[] characters; 
 	public string[] descriptions;
 
     public Location()
     {
         pickupables = new List<Item>();
-        npcs = new List<NPC>();
+        npc = null;
+        monster = null;
 		
     }
 
@@ -41,29 +42,39 @@ public class Location
 	public string GetDescription()
 	{
 		Debug.Log(firstVisit + "");
-		// first visit show first description
-		if (firstVisit)
+        string s = "";
+        // first visit show first description
+        if (firstVisit)
 		{
-			string s =  descriptions[0];
-            if (npcs.Count > 0) {
-                s += "\r\n There is :";
-                for (int i = 0; i < npcs.Count; i++)
-                    s += "\r\n\t " + npcs[i].name;
-            }
+			s =  descriptions[0];
+            firstVisit = false;
             
-			return Util.ColorTextImportant("> " + s);
 		}
 		else
 		{
 			// choose random description
 			int randomIndex = Random.Range(0, descriptions.Length);
-			string s = descriptions[randomIndex];
-			return Util.ColorTextImportant("> " + s);
+			s = descriptions[randomIndex];
+			
 
 		}
-	}
 
-	public bool CheckCompleted() 
+        if (pickupables.Count > 0)
+            for (int i = 0; i < pickupables.Count; i++)
+                s += "\r\n(pickup) There is a " + pickupables[i].Name;
+        if (npc != null)
+            s += "\r\n(talk) " + npc.name + " is facing you";
+
+        if (!name.Equals("In Ship") && !monster.amIDead())
+            s += "\r\n(attack) You face " + monster.getName() + " and he has : " + monster.getFeature();
+
+        return Util.ColorTextImportant("> " + s);
+
+        
+
+    }
+
+    public bool CheckCompleted() 
 	{
 
 

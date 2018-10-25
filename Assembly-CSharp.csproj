@@ -63,14 +63,19 @@
   <ItemGroup>
     <Compile Include="Assets\_Scripts\CommandAndOtherWords.cs" />
     <Compile Include="Assets\_Scripts\CommandParser.cs" />
+    <Compile Include="Assets\_Scripts\ConsumableItem.cs" />
+    <Compile Include="Assets\_Scripts\ICombat.cs" />
     <Compile Include="Assets\_Scripts\Inventory.cs" />
     <Compile Include="Assets\_Scripts\Item.cs" />
     <Compile Include="Assets\_Scripts\Location.cs" />
     <Compile Include="Assets\_Scripts\Map.cs" />
+    <Compile Include="Assets\_Scripts\Monster.cs" />
     <Compile Include="Assets\_Scripts\MyGameManager.cs" />
     <Compile Include="Assets\_Scripts\NPC.cs" />
     <Compile Include="Assets\_Scripts\PickUp.cs" />
     <Compile Include="Assets\_Scripts\Player.cs" />
+    <Compile Include="Assets\_Scripts\Quest.cs" />
+    <Compile Include="Assets\_Scripts\RegularItem.cs" />
     <Compile Include="Assets\_Scripts\Ship.cs" />
     <Compile Include="Assets\_Scripts\Tester.cs" />
     <Compile Include="Assets\_Scripts\UserInputter.cs" />
