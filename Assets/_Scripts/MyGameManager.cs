@@ -81,6 +81,10 @@ public class MyGameManager : MonoBehaviour
                 {
                     message = "You use " + item.Name;
                     message += "\r\n"+item.use();
+					if(!currentLocation.monster.amIDead())
+					{
+						player.receiveDommage(currentLocation.monster.getAttackPoint());
+					}
                     break;
                 }
                 message = "You do not posess that item";
