@@ -33,6 +33,7 @@ public class RegularItem : Item {
 
     public string use()
     {
+        Debug.Log(Description);
         return Description;
     }
 

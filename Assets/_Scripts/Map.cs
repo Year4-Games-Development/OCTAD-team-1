@@ -41,6 +41,7 @@ public class Map
 
         //items
         RegularItem todolist = new RegularItem(1, "todolist", ship.GetStatus());
+        Debug.Log("ship : " + ship.GetStatus());
         RegularItem flower = new RegularItem(2, "flower", "It's a beautiful flower");
         ConsumableItem potion = new ConsumableItem(3, "potion", "recover 5 hp", 5, player);
 
