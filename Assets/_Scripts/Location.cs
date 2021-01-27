@@ -6,6 +6,7 @@ public class Location
 {
 	public string name; 
 	public string shortDesc;
+    public Monster monster;
 
 //	public List<Location> exits;
 
@@ -21,9 +22,17 @@ public class Location
 	public bool firstVisit = true;
 	public List<Item> pickupables;
 
-    public List<NPC> npcs;
+    public NPC npc;
 	// public int[] characters; 
 	public string[] descriptions;
+
+    public Location()
+    {
+        pickupables = new List<Item>();
+        npc = null;
+        monster = null;
+		
+    }
 
 	public string GetName()
 	{
@@ -33,20 +42,39 @@ public class Location
 	public string GetDescription()
 	{
 		Debug.Log(firstVisit + "");
-		// first visit show first description
-		if (firstVisit)
+        string s = "";
+        // first visit show first description
+        if (firstVisit)
 		{
-			return descriptions[0];
+			s =  descriptions[0];
+            firstVisit = false;
+            
 		}
 		else
 		{
 			// choose random description
 			int randomIndex = Random.Range(0, descriptions.Length);
-			return descriptions[randomIndex];
-		}
-	}
+			s = descriptions[randomIndex];
+			
 
-	public bool CheckCompleted() 
+		}
+
+        if (pickupables.Count > 0)
+            for (int i = 0; i < pickupables.Count; i++)
+                s += "\r\n(pickup) There is a " + pickupables[i].Name;
+        if (npc != null)
+            s += "\r\n(talk) " + npc.name + " is facing you";
+
+        if (!name.Equals("In Ship") && !monster.amIDead())
+            s += "\r\n(attack) You face " + monster.getName() + " and he has : " + monster.getFeature();
+
+        return Util.ColorTextImportant("> " + s);
+
+        
+
+    }
+
+    public bool CheckCompleted() 
 	{
 
 
@@ -60,33 +88,35 @@ public class Location
 
 		if (null != exitNorth)
 		{
-			exitList += "\n there is an exit to the North";
+			exitList += "\n> there is an exit to the North";
 			exitCount++;
 		}
 
 		if (null != exitSouth)
 		{
-			exitList += "\n there is an exit to the South";
+			exitList += "\n> there is an exit to the South";
 			exitCount++;
 		}
 
 		if (null != exitEast)
 		{
-			exitList += "\n there is an exit to the East";
+			exitList += "\n> there is an exit to the East";
 			exitCount++;
 		}
 
 		if (null != exitWest)
 		{
-			exitList += "\n there is an exit to the West";
+			exitList += "\n> there is an exit to the West";
 			exitCount++;
 		}
-		return "There are " + exitCount + " exits. " + exitList;
+		
+		// string s = "There are " + exitCount + " exits. " + exitList;
+		 return Util.ColorTextInteractible(exitList);
 	}
 
 	public string GetFullDescription()
 	{
-		return GetDescription() + "\n" + GetExitDescriptions();
+		return "\n" + GetDescription() + "\n" + GetExitDescriptions();
 	}
 
 

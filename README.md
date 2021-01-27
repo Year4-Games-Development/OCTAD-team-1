@@ -47,3 +47,15 @@ Version 1.3
 - Locations now hold a list of 'pickupables' 
 - Npc Datastructure added, unfinished
 
+version 1.4
+- two word parser implemented
+- QOL UI updates
+- todo list dynamically shows repairs needed for ship
+
+version 1.5
+- combat system added
+
+version 1.6
+- item interface added
+- interactactable NPCS
+- quest and reward system

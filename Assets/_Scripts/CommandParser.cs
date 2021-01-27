@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEditor.Experimental.UIElements.GraphView;
 using UnityScript.Steps;
 
@@ -36,11 +37,12 @@ public class CommandParser
         {
             case "door":
                 return Util.Noun.Door;
-
             case "key":
                 return Util.Noun.Key;
             case "list":
-                return Util.Noun.List;
+                return Util.Noun.Todo_List;
+            case "up":
+                return Util.Noun.Up;
 
         }
         return Util.Noun.Unknown;
@@ -63,6 +65,8 @@ public class CommandParser
                 return Util.Command.Help;
             case "look":
                 return Util.Command.Look;
+            // case "status":
+            //     return Util.Command.Status;
             case "quit":
                 return Util.Command.Quit;
             case "north":
@@ -88,10 +92,29 @@ public class CommandParser
             case "use":
                 return Util.Command.Use;
             case "read":
-                return Util.Command.Read;  
-            case "todo":
-                return Util.Command.Todo_List;
+                return Util.Command.Read; 
+            case "pick":
+                return Util.Command.Pick; 
+            case "retry":
+                return Util.Command.Retry;
+            // case "todo":
+            //     return Util.Command.Todo_List;
             
+                return Util.Command.Pick;
+            case "talk":
+                return Util.Command.Talk;
+                // case "todo":
+                //     return Util.Command.Todo_List;
+            case "attack":
+                return Util.Command.Attack;
+            case  "status":
+                return Util.Command.Status;
+            case "watch":
+                return Util.Command.Watch;
+            case "quests":
+                return Util.Command.Quests;
+
+
         }
         return Util.Command.Unknown;
     }

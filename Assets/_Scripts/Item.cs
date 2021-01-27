@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item  {
+public interface Item  {
 
-	public int id;
-	public string name;
+	int id { get; set; }
+	string Name { get; set; }
+    string Description { get; set; }
+    string use();
 
-	public Item(int id, string name) {
-		this.id = id;
-		this.name = name;
-	}
 }

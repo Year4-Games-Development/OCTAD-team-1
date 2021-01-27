@@ -29,7 +29,15 @@ public class Util
 		Inventory,
 		Use,
 		Read,
-		Todo_List,
+		Pick,
+		// Todo_List,
+		// Status,
+		Retry,
+        Talk,
+        Attack,
+        Status,
+        Watch, //display the characteristics of the monster 
+        Quests,
 		Unknown        
 	}
 	
@@ -38,7 +46,8 @@ public class Util
 		Door,
 		Key,
 		Unknown,
-		List
+		Up,
+		Todo_List
         
 	}
 
@@ -53,7 +62,15 @@ public class Util
 				return "Help:" +
 						"\n    - Quit: give up" +
 						"\n    - Help: see this help text" +
-   						"\n    - Look: describe your current location";
+   						"\n    - Look: describe your current location"+
+   						"\n    - Inventory: show your current inventory"+
+   						"\n    - Talk: talk with NPC"+
+   						"\n    - Attack: attack the monster" +
+   						"\n    - Status: show your current characteristics"+
+   						"\n    - Watch: displays all the NPC and Monster present in the current location and their characteristics"+
+   						"\n    - Use: use a object in your inventory"+
+   						"\n    - Quests: show your current quests"+
+   						"\n    - Pickup: add a object in your inventory";
 
 			default:
 				/*
@@ -68,5 +85,21 @@ public class Util
 	public static string ColorText(string t, string color)
 	{
 		return "<color=" + color + ">" + t + "</color>";
+	}
+
+	public static string ColorTextImportant(string t)
+	{
+		return "<color=#A569BD>" + t + "</color>";
+	}
+
+	public static string ColorTextInteractible(string t)
+	{
+		return "<color=#D2B4DE>" + t + "</color>";
+
+	}
+
+	public static string ColorTextPositive(string t)
+	{
+		return "<color=Green>" + t + "</color>";
 	}
 }
